@@ -1,0 +1,14 @@
+
+
+public function get_availibility()
+{
+	$sql="SELECT id_chambre, numero, capacite, categorie 
+FROM `chambres` 
+WHERE id_chambre 
+NOT IN 
+(SELECT id_chambre FROM `sejour` WHERE (date_arrivee BETWEEN 
+'{$_POST['datepicker1_arrivee']}' AND '{$_POST['datepicker2_depart']}')
+OR (date_depart BETWEEN 
+'{$_POST['datepicker1_arrivee']}' AND '{$_POST['datepicker2_depart']}') ) 
+ORDER BY id_cahmbre";
+}

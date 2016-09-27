@@ -1,0 +1,5 @@
+# commentaires Apache
+
+ErrorDocument 403 http://localhost/php/lokisalle/errors/403.php
+
+ErrorDocument 404 http://localhost/php/lokisalle/errors/404.php

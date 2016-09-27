@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 09 Septembre 2016 à 10:51
+-- Généré le :  Mer 21 Septembre 2016 à 15:48
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -74,48 +74,38 @@ INSERT INTO `chambres` (`id_chambre`, `numero`, `categorie`, `etage`, `statut`, 
 
 DROP TABLE IF EXISTS `clientele`;
 CREATE TABLE IF NOT EXISTS `clientele` (
-  `id_client` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` text NOT NULL,
-  `prenom` text NOT NULL,
-  `adresse_permanente` text NOT NULL,
-  `code_postal` int(11) NOT NULL,
-  `telephone` varchar(11) NOT NULL,
-  `E-mail` int(11) NOT NULL,
-  `ville` text NOT NULL,
-  `pays` text NOT NULL,
-  PRIMARY KEY (`id_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `sejour`
---
-
-DROP TABLE IF EXISTS `sejour`;
-CREATE TABLE IF NOT EXISTS `sejour` (
-  `id_sejour` int(11) NOT NULL AUTO_INCREMENT,
-  `id_client` int(11) NOT NULL,
-  `id_chambre` int(11) NOT NULL,
   `date_reservation` date NOT NULL,
   `date_arrivee` date NOT NULL,
   `date_depart` date NOT NULL,
-  `etat` enum('en attente','confirme','paye','') NOT NULL,
-  PRIMARY KEY (`id_sejour`),
-  UNIQUE KEY `id_client` (`id_client`),
-  UNIQUE KEY `id_chambre` (`id_chambre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_chambre` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL AUTO_INCREMENT,
+  `civilite` enum('Monsieur','Madame') NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
+  `adresse` varchar(50) NOT NULL,
+  `code_postal` varchar(11) NOT NULL,
+  `ville` varchar(50) NOT NULL,
+  `pays` varchar(50) NOT NULL,
+  `telephone` varchar(20) NOT NULL,
+  `E-mail` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_client`),
+  KEY `id_chambre` (`id_chambre`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Contraintes pour les tables exportées
+-- Contenu de la table `clientele`
 --
 
---
--- Contraintes pour la table `sejour`
---
-ALTER TABLE `sejour`
-  ADD CONSTRAINT `sejour_ibfk_2` FOREIGN KEY (`id_client`) REFERENCES `clientele` (`id_client`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `sejour_ibfk_3` FOREIGN KEY (`id_chambre`) REFERENCES `chambres` (`id_chambre`);
+INSERT INTO `clientele` (`date_reservation`, `date_arrivee`, `date_depart`, `id_chambre`, `id_client`, `civilite`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`, `pays`, `telephone`, `E-mail`) VALUES
+('2016-09-01', '2016-09-08', '2016-09-10', 9, 1, 'Monsieur', 'BON', 'Jean', '2 rue des voisins', '46800', 'MONTCUQ', 'FRANCE', '+33 512345678', 'jean.bon@bayonne.fr'),
+('2016-09-02', '2016-10-07', '2016-10-17', 7, 2, 'Madame', 'GOLOTTE', 'Marie', '1 avenue de l''Est', '69001', 'LYON', 'FRANCE', '+33 412345678', 'marie.golotte@yahoo.fr'),
+('2016-09-12', '2016-09-29', '2016-09-30', 5, 3, 'Monsieur', 'GOLOW', 'Henry', 'Fleet street 4th', 'E173AA', 'LONDRES', 'ROYAUME-UNI', '+44 020 1234 5678', 'henry.golow@mail.com'),
+('2016-09-15', '2016-10-28', '2016-10-31', 10, 4, 'Monsieur', 'ENSTEIN', 'Franck', '23 rue du jour', '75006', 'PARIS', 'FRANCE', '+33 1 4123 4567', 'franck.enstein@scientist.com'),
+('2016-09-03', '2016-09-11', '2016-09-14', 6, 5, 'Monsieur', 'MUDA', 'Norbert', '11 rue du menhir', '75009', 'PARIS', 'FRANCE', '+33 1401234567', 'robert.muda@wanadoo.fr'),
+('2016-09-17', '2016-09-23', '2016-09-25', 22, 6, 'Madame', 'FPONK', 'Yolanda', '33 rue chapon', '75003', 'PARIS', 'FRANCE', '+33 612345678', 'yodafponk@fponk.fr'),
+('2016-09-18', '2016-10-05', '2016-10-08', 18, 7, 'Monsieur', 'EL-HOMBRE', 'Joe', '14 rue de Braque', '31100', 'TOULOUSE', 'FRANCE', '+33 601234567', 'J.elhombre@wanadoudou.com'),
+('2016-09-17', '2016-10-02', '2016-10-03', 17, 8, 'Monsieur', 'REGNIER', 'Thomas', '98 rue Spiderman', '81200', 'MAZAMET', 'FRANCE', '+33 691234560', 'thomas.regnier@tarentule.net'),
+('2016-09-09', '2016-09-20', '2016-09-22', 15, 9, 'Madame', 'LIPONNE', 'Marine', '3 rue des voisins', '46800', 'MONTCUQ', 'FRANCE', '+33 691234567', 'm.liponne@orange.fr');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

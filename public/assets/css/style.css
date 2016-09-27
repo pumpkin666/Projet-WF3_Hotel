@@ -1,0 +1,22 @@
+#formResa {
+	
+}
+
+#formResa fieldset {
+	display: table;
+}
+
+#formResa .form-group {
+	display: table-row !important;
+	height: 50px;
+}
+
+#formResa .form-group label {
+	width : 25%;
+	display: table-cell;
+}
+
+#formResa .form-group input {
+	width : 75%;
+	display: table-cell;
+}
